@@ -1,0 +1,13 @@
+{% extends 'main/registrate.html' %}
+
+{% block title %}Sing Up{% endblock %}
+
+{% block content %}
+    <h2>Please Sing In</h2>
+    <form method="post">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit" class="btn btn-primary btn-block">Sing In</button><br>
+    </form>
+    
+{% endblock %}
