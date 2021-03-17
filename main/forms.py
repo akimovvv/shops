@@ -26,5 +26,4 @@ class UserEdit(forms.Form):
     username = forms.CharField(required=False, label='Edit username', widget=forms.TextInput(attrs={'class': 'form-control'}))
     first_name = forms.CharField(required=False, label='Edit first name', widget=forms.TextInput(attrs={'class': 'form-control'}))
     email = forms.CharField(required=False, label='Edit email', widget=forms.EmailInput(attrs={'class': 'form-control'}))
-    # old_password = forms.CharField(required=False, label='Old password', widget=forms.PasswordInput(attrs={'class': 'form-control'}))
     new_password = forms.CharField(required=False, label='New password', widget=forms.PasswordInput(attrs={'class': 'form-control'}))

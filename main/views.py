@@ -6,13 +6,30 @@ from django.views.generic.base import View
 from django.contrib import messages
 from .models import *
 
-# Create your views here.
+
+
 class BaseView(View):
     def get(self, request):
         categories = Category.objects.all()
         products = Product.objects.all()
         context = {'categories_list': categories, 'products_list': products}
         return render(request, 'main/base.html', context)
+
+
+
+class CategoriesView(View):
+    def get(self, request, slug):
+        products = Product.objects.filter(category__slug=slug)
+        context = {'products_list': products}
+        return render(request, 'main/product_view.html', context)
+
+
+
+class Product_detail_view(View):
+    def get(self, request, product_slug):
+        product = Product.objects.get(slug=product_slug)
+        context = {'product': product}
+        return render(request, 'main/product_detail_view.html', context)
 
 
 
@@ -23,24 +40,6 @@ def my_profile(request):
 
 def about(request):
     return render(request, 'main/about.html')
-
-
-
-class CategoriesView(View):
-    def get(self, request, slug):
-        # makers = Maker.objects.all() 'makers_list': makers,
-        products = Product.objects.filter(category__slug=slug)
-        context = {'products_list': products}
-        return render(request, 'main/product_view.html', context)
-
-
-
-# class MakerView(View):
-#     def get(self, request, slug_1, slug_2):
-#         makers = Maker.objects.all()
-#         products = Product.objects.filter(category__slug=slug_1, maker__slug=slug_2)
-#         context = {'products_list': products, 'makers_list': makers}
-#         return render(request, 'main/product_view_maker.html', context)
 
 
 

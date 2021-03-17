@@ -1,0 +1,46 @@
+{% extends 'main/base.html' %}
+{% load static %}
+    {% block title %}Product detail{% endblock %}
+{% block content %}
+    <link href="{% static 'main/product_style.css' %}" rel="stylesheet">
+    <meta name="robots" content="noindex,follow" />
+  <body>
+    <main class="container">
+
+      <!-- Left Column / Headphones Image -->
+      <div class="img_foto">
+          <a href="{{ product.img.url }}"><img class="card-img-top" src="{{ product.img.url }}" alt=""></a>
+      </div>
+
+
+      <!-- Right Column -->
+      <div class="right-column" style="margin-left: 10%;">
+
+        <!-- Product Description -->
+        <div class="product-description">
+          <span>{{ product.category }}, {{ product.maker }}</span>
+          <h1>{{ product.name }}</h1>
+          <p>{{ product.description }}</p>
+        </div>
+        <!-- Product Pricing -->
+        <div class="product-price">
+          <span>{{ product.price }} сом</span>
+          {% if user.is_authenticated %}
+              <a href="{% url 'about' %}" class="cart-btn">Order</a>
+          {% else %}
+              <a href="{% url 'singin' %}" class="cart-btn">Order</a>
+          {% endif %}
+        </div>
+      </div>
+    </main>
+  </body>
+{% endblock %}
+
+{% block footer %}
+    <footer style="position:fixed; left:0px; bottom:0px; height:30px; width:100%;" class="py-5 bg-dark">
+    <div class="container">
+      <p class="m-0 text-center text-white">Copyright &copy; Your Website 2020</p>
+    </div>
+    <!-- /.container -->
+  </footer>
+{% endblock %}

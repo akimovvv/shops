@@ -117,7 +117,7 @@
                       <a href="{{ product.img.url }}"><img class="card-img-top" src="{{ product.img.url }}" alt=""></a>
                       <div class="card-body">
                         <h4 class="card-title">
-                          <a href="#">{{ product.name }}</a>
+                          <a href="{{ product.get_absolute_url }}">{{ product.name }}</a>
                         </h4>
                         <h5>{{ product.price }} сом</h5>
                         <p class="card-text">{{ product.description }}</p>
