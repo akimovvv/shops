@@ -1,6 +1,6 @@
 {% extends 'main/base.html' %}
 
-{% block title %}My profile{% endblock %}
+{% block title %}Edit Profile{% endblock %}
 
 {% block content %}
 <style>
@@ -36,30 +36,29 @@ button:hover, a:hover {
   opacity: 0.7;
 }
 </style>
+{% if messages %}
 
+    {% for message in messages %}
+        <div class="alert alert-{% if message.tags == 'error' %}danger{% else %}{{ message.tags }}{% endif %}">
+            {{ message }}
+        </div>
+    {% endfor %}
+
+{% endif %}
 
 <div class="card">
-      <h1>{{ user.username }}</h1>
-  <p class="title">
-      {% if user.first_name %}
-          <h1>{{ user.first_name }}</h1>
-      {% else %}
-          First name: doesn`t exist.
-      {% endif %}
-  </p>
-    <p>
-      {% if user.email %}
-          E-mail: {{ user.email }}
-      {% else %}
-          E-mail: doesn`t exist.
-      {% endif %}
-    </p>
-  <p><button ><a href="{% url 'editprofile' %}">Edit profile</a></button></p>
+    <h2>Edit profile</h2>
+    <form method="post">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit">Edit profile</button>
+    </form>
 </div>
+
 {% endblock %}
 
 {% block footer %}
-    <footer style="position:fixed; left:0px; bottom:0px; height:30px; width:100%;" class="py-5 bg-dark">
+    <footer class="py-5 bg-dark">
     <div class="container">
       <p class="m-0 text-center text-white">Copyright &copy; Your Website 2020</p>
     </div>

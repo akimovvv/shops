@@ -1,6 +1,6 @@
 {% extends 'main/base.html' %}
 
-{% block title %}My profile{% endblock %}
+{% block title %}About us{% endblock %}
 
 {% block content %}
 <style>
@@ -39,22 +39,19 @@ button:hover, a:hover {
 
 
 <div class="card">
-      <h1>{{ user.username }}</h1>
+      <h1>Online Shop</h1>
   <p class="title">
-      {% if user.first_name %}
-          <h1>{{ user.first_name }}</h1>
-      {% else %}
-          First name: doesn`t exist.
-      {% endif %}
+          <h2>Info for order below</h2>
   </p>
     <p>
-      {% if user.email %}
-          E-mail: {{ user.email }}
-      {% else %}
-          E-mail: doesn`t exist.
-      {% endif %}
+        Исы Ахунбаева, 133
     </p>
-  <p><button ><a href="{% url 'editprofile' %}">Edit profile</a></button></p>
+    <p>
+        Phone: 0500060402
+    </p>
+    <p>
+        (Whats App, Telegram)
+    </p>
 </div>
 {% endblock %}
 

@@ -1,13 +1,69 @@
 {% extends 'main/registrate.html' %}
 
-{% block title %}Sing Up{% endblock %}
-
+{% block title %}Sing In{% endblock %}
 {% block content %}
+<style>
+        .card {
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+  max-width: 300px;
+  margin: auto;
+  text-align: center;
+  margin-top: 60px;
+}
+
+.title {
+  color: grey;
+  font-size: 18px;
+}
+
+button {
+  border: none;
+  outline: 0;
+  display: inline-block;
+  padding: 8px;
+  color: white;
+  background-color: #343a40;
+  text-align: center;
+  cursor: pointer;
+  width: 100%;
+  font-size: 18px;
+}
+
+
+
+button:hover, a:hover {
+  opacity: 0.7;
+}
+</style>
+
+{% if messages %}
+
+    {% for message in messages %}
+        <div class="alert alert-{% if message.tags == 'error' %}danger{% else %}{{ message.tags }}{% endif %}">
+            {{ message }}
+        </div>
+    {% endfor %}
+
+{% endif %}
+
+
+<div class="card">
     <h2>Please Sing In</h2>
     <form method="post">
         {% csrf_token %}
         {{ form.as_p }}
         <button type="submit" class="btn btn-primary btn-block">Sing In</button><br>
     </form>
-    
+    <a href="{% url 'singup' %}">If you didn`t registrate.</a>
+</div>
+
+{% endblock %}
+
+{% block footer %}
+    <footer style="position:fixed; left:0px; bottom:0px; height:30px; width:100%;" class="py-5 bg-dark">
+    <div class="container">
+      <p class="m-0 text-center text-white">Copyright &copy; Your Website 2020</p>
+    </div>
+    <!-- /.container -->
+  </footer>
 {% endblock %}
